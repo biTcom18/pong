@@ -4,6 +4,7 @@ package com.gamecodeschool.pong;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.graphics.Paint;
@@ -72,5 +73,26 @@ public class PongGame extends SurfaceView {
         mScore = 0;
         mLives = 3;
 
+    }
+    // Draw the game objects and the HUD
+    private void draw(){
+        if (mOurHolder.getSurface().isValid()){
+            // Lock the canvas (graphics memory) ready to draw
+            mCanvas = mOurHolder.lockCanvas();
+            // Fill the screen with a solid color
+            mCanvas.drawColor(Color.argb(255,26,128,182));
+            // Choose a color to paint with
+            mPaint.setColor(Color.argb(255,255,255,255));
+            // Draw the bat and ball
+            // Choose the font size
+            mPaint.drawText("Score: " + mScore + " Lives: " + mLives,
+                    mFontMargin, mFontSize, mPaint);
+            if (DEBUGGING){
+                printDebuggingText();
+            }
+            // Display the drawing on screen
+            // unlockCanvasPost is a method of SurfaceView
+            mOurHolder.unlockCanvasAndPost(mCanvas);
+        }
     }
 }
