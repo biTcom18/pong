@@ -95,4 +95,11 @@ public class PongGame extends SurfaceView {
             mOurHolder.unlockCanvasAndPost(mCanvas);
         }
     }
+    private void printDebuggingText(){
+        int debugSize = mFontSize / 2;
+        int debugStart = 150;
+        mPaint.setTextSize(debugSize);
+        mCanvas.drawText("FPS: " + mFPS,
+                10, debugStart + debugSize,mPaint);
+    }
 }
